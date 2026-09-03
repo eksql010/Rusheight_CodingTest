@@ -45,7 +45,7 @@ int main()
 	vector<vector<pair<int, int>>> adjList(stations.size());	// 인접 리스트
 	vector<int> minTime(stations.size(), INF);					// 최소시간 갱신할 배열
 	priority_queue<pair<int, int>> pq;							// 최소시간 정렬할 우선순위큐
-	vector<int> routeFrom(stations.size(), 0);					// 최소시간 경로를 저장할 배열
+	vector<int> routeFrom(stations.size(), -1);					// 최소시간 경로를 저장할 배열
 	string startStation, endStation;							// 입력 받을 변수
 
 	for (int i = 0; i < stations.size(); ++i)
@@ -141,7 +141,7 @@ int main()
 			stack<int> temp;
 			temp.push(leastTimeEndStationNum);
 
-			for (int i = leastTimeEndStationNum; routeFrom[i] != 0; i = routeFrom[i])
+			for (int i = leastTimeEndStationNum; routeFrom[i] != -1; i = routeFrom[i])
 				temp.push(routeFrom[i]);
 
 			// 결과 출력
