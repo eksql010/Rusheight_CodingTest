@@ -3,7 +3,7 @@
 
 int main()
 {	
-	StationApp app;
+	CStationApp app;
 	app.Execute();
 
 	return 0;

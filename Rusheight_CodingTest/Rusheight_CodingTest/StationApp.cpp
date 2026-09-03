@@ -1,6 +1,6 @@
 #include "StationApp.h"
 
-void StationApp::Execute()
+void CStationApp::Execute()
 {
 	string startStation, endStation;
 
@@ -9,7 +9,7 @@ void StationApp::Execute()
 	m_Console.Output_Result(m_Navigation.Get_Path(), m_Navigation.Get_TotalTime());
 }
 
-void StationApp::Input_Stations(string& startStation, string& endStation)
+void CStationApp::Input_Stations(string& startStation, string& endStation)
 {
 	while (true)
 	{

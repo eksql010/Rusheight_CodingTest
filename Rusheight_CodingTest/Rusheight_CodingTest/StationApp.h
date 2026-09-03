@@ -3,7 +3,7 @@
 #include "Navigation.h"
 #include "StationConsole.h"
 
-class StationApp
+class CStationApp
 {
 public:
 	void				Execute();
