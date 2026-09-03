@@ -1,22 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="00_StationApp">
+      <UniqueIdentifier>{d09405ea-41d6-4c8a-a313-a45de7b23b23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="01_ConsoleIO">
+      <UniqueIdentifier>{edf74aef-dc07-4df1-9221-255c975b57b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="02_Navigation">
+      <UniqueIdentifier>{5b8c7643-c5de-4446-bf76-e146684b9c2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99_Define">
+      <UniqueIdentifier>{32220fcf-a3b1-4854-90cb-951008f5cc02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98_Default">
+      <UniqueIdentifier>{df3438d1-1a2b-4480-a04c-8ad59c580887}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>98_Default</Filter>
     </ClCompile>
+    <ClCompile Include="Navigation.cpp">
+      <Filter>02_Navigation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Defines.h">
+      <Filter>99_Define</Filter>
+    </ClInclude>
+    <ClInclude Include="Navigation.h">
+      <Filter>02_Navigation</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
