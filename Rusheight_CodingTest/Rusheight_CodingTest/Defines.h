@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include <stack>
+#include <windows.h>
 
 using namespace std;
 
@@ -18,6 +19,8 @@ struct StationInfo
 	string	name;
 	int		line;
 };
+
+enum class STATIONERROR { NOTFOUND, SAME };
 
 const vector<StationInfo> stations =
 {

@@ -1,7 +1,16 @@
 #include "Navigation.h"
 
+CNavigation::CNavigation()
+{
+	m_AdjList.resize(stations.size());
+
+	Make_Graph();
+}
+
 void CNavigation::Initialize()
 {
+	// 현재는 초기화 함수가 불필요한 것 같아서 해당 로직 생성자에 넣고 앱에서 호출 안 함
+
 	m_AdjList.resize(stations.size());
 
 	Make_Graph();
@@ -46,19 +55,23 @@ void CNavigation::Find_ShortestPath(const string& startStationName, const string
 	for (int endStationNum : m_Mapping[endStationName])
 	{
 		if (minTime[endStationNum] < minTime[leastTimeEndStationNum])
+		{
 			leastTimeEndStationNum = endStationNum;
+		}
 	}
 
 	// 이동 경로 역추적
 	stack<int> temp;
 	temp.push(leastTimeEndStationNum);
 	for (int i = leastTimeEndStationNum; routeFrom[i] != -1; i = routeFrom[i])
+	{
 		temp.push(routeFrom[i]);
+	}
 
-	// 이동 경로 정방향, 문자열로 저장
+	// 이동 경로 정방향, 노선 정보로 저장
 	while (!temp.empty())
 	{
-		m_Path.push_back(stations[temp.top()].name);
+		m_Path.push_back(stations[temp.top()]);
 		temp.pop();
 	}
 

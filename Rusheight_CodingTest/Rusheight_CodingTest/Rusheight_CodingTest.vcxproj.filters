@@ -4,9 +4,6 @@
     <Filter Include="00_StationApp">
       <UniqueIdentifier>{d09405ea-41d6-4c8a-a313-a45de7b23b23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01_ConsoleIO">
-      <UniqueIdentifier>{edf74aef-dc07-4df1-9221-255c975b57b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02_Navigation">
       <UniqueIdentifier>{5b8c7643-c5de-4446-bf76-e146684b9c2a}</UniqueIdentifier>
     </Filter>
@@ -16,6 +13,9 @@
     <Filter Include="98_Default">
       <UniqueIdentifier>{df3438d1-1a2b-4480-a04c-8ad59c580887}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_StationConsole">
+      <UniqueIdentifier>{edf74aef-dc07-4df1-9221-255c975b57b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -24,6 +24,12 @@
     <ClCompile Include="Navigation.cpp">
       <Filter>02_Navigation</Filter>
     </ClCompile>
+    <ClCompile Include="StationConsole.cpp">
+      <Filter>01_StationConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="StationApp.cpp">
+      <Filter>00_StationApp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defines.h">
@@ -31,6 +37,12 @@
     </ClInclude>
     <ClInclude Include="Navigation.h">
       <Filter>02_Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="StationConsole.h">
+      <Filter>01_StationConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="StationApp.h">
+      <Filter>00_StationApp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
