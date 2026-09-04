@@ -1,9 +1,12 @@
-#pragma once
+﻿#pragma once
 
 #include "Defines.h"
 
 class CStationConsole
 {
+public:
+	CStationConsole();
+
 public:
 	string	Input_Station(const string& prompt);
 	void	Output_Error(STATIONERROR error);

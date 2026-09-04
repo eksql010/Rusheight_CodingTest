@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Defines.h"
 
@@ -16,6 +16,7 @@ public:
 	int						Get_TotalTime()		{ return m_TotalTime; }
 
 private:
+	bool					Load_StationData(const string& filePath);
 	void					Make_Graph();
 
 private:
@@ -23,5 +24,8 @@ private:
 	vector<vector<pair<int, int>>>		m_AdjList;
 	vector<StationInfo>					m_Path;
 	int									m_TotalTime;
+
+	vector<StationInfo>					m_Stations;
+	vector<int>							m_TransitTimes;
 };
 

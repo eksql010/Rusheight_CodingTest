@@ -1,4 +1,10 @@
-#include "StationConsole.h"
+ï»¿#include "StationConsole.h"
+
+CStationConsole::CStationConsole()
+{
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
+}
 
 string CStationConsole::Input_Station(const string& prompt)
 {
@@ -15,20 +21,20 @@ void CStationConsole::Output_Error(STATIONERROR error)
     switch (error)
     {
     case STATIONERROR::NOTFOUND:
-        cout << "Á¸ÀçÇÏÁö ¾Ê´Â ¿ªÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä." << endl;
+        cout << "ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì—­ìž…ë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ ì£¼ì„¸ìš”." << endl;
         break;
     case STATIONERROR::SAME:
-        cout << "Ãâ¹ß¿ª°ú µµÂø¿ªÀÌ °°½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä." << endl;
+        cout << "ì¶œë°œì—­ê³¼ ë„ì°©ì—­ì´ ê°™ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ ì£¼ì„¸ìš”." << endl;
         break;
     }
 }
 
 void CStationConsole::Output_Result(const vector<StationInfo>& path, int totalTime)
 {
-	// °á°ú Ãâ·Â
-	cout << "[Å½»ö °á°ú], " + path.front().name + " -> " + path.back().name << endl;
+	// ê²°ê³¼ ì¶œë ¥
+	cout << "[íƒìƒ‰ ê²°ê³¼], " + path.front().name + " -> " + path.back().name << endl;
 
-	cout << "ÀÌµ¿ °æ·Î : ";
+	cout << "ì´ë™ ê²½ë¡œ : ";
 	for (int i = 0; i < path.size(); ++i)
 	{
 		cout << path[i].name;
@@ -38,7 +44,7 @@ void CStationConsole::Output_Result(const vector<StationInfo>& path, int totalTi
 
 		if (isTransfer)
 		{
-			cout << "(È¯½Â)";
+			cout << "(í™˜ìŠ¹)";
 			++i;
 			isLast = (i == path.size() - 1);
 		}
@@ -50,14 +56,14 @@ void CStationConsole::Output_Result(const vector<StationInfo>& path, int totalTi
 	}
 	cout << endl;
 
-	cout << "ÃÑ ¼Ò¿ä ½Ã°£ : " << totalTime / 60 << "ºÐ " << totalTime % 60 << "ÃÊ" << endl;
+	cout << "ì´ ì†Œìš” ì‹œê°„ : " << totalTime / 60 << "ë¶„ " << totalTime % 60 << "ì´ˆ" << endl;
 
 	system("pause");
 }
 
 WORD CStationConsole::Get_Color(int stationLine)
 {
-	// ÀÌÈÄ ÀÏºÎ ÆùÆ® »ö»ó º¯°æÇÒ ¶§ »ç¿ëÇÒ ÇÔ¼ö
+	// ì´í›„ ì¼ë¶€ í°íŠ¸ ìƒ‰ìƒ ë³€ê²½í•  ë•Œ ì‚¬ìš©í•  í•¨ìˆ˜
 
     return WORD();
 }

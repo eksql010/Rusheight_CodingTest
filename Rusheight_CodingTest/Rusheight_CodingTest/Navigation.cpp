@@ -1,35 +1,40 @@
-#include "Navigation.h"
+ï»¿#include "Navigation.h"
 
 CNavigation::CNavigation()
 {
-	m_AdjList.resize(stations.size());
+	if (!Load_StationData("Data/Station_Data.csv"))
+	{
+		cout << "íŒŒì¼ ë¡œë“œ ì‹¤íŒ¨" << endl;
+	}
+
+	m_AdjList.resize(m_Stations.size());
 
 	Make_Graph();
 }
 
 void CNavigation::Initialize()
 {
-	// ÇöÀç´Â ÃÊ±âÈ­ ÇÔ¼ö°¡ ºÒÇÊ¿äÇÑ °Í °°¾Æ¼­ ÇØ´ç ·ÎÁ÷ »ı¼ºÀÚ¿¡ ³Ö°í ¾Û¿¡¼­ È£Ãâ ¾È ÇÔ
+	// í˜„ì¬ëŠ” ì´ˆê¸°í™” í•¨ìˆ˜ê°€ ë¶ˆí•„ìš”í•œ ê²ƒ ê°™ì•„ì„œ í•´ë‹¹ ë¡œì§ ìƒì„±ìì— ë„£ê³  ì•±ì—ì„œ í˜¸ì¶œ ì•ˆ í•¨
 
-	m_AdjList.resize(stations.size());
+	m_AdjList.resize(m_Stations.size());
 
 	Make_Graph();
 }
 
 void CNavigation::Find_ShortestPath(const string& startStationName, const string& endStationName)
 {
-	vector<int>	minTime(stations.size(), INF);
+	vector<int>	minTime(m_Stations.size(), INF);
 	priority_queue<pair<int, int>> visitQueue;
-	vector<int> routeFrom(stations.size(), -1);
+	vector<int> routeFrom(m_Stations.size(), -1);
 
-	// Ãâ¹ß¿ª ¸ğµÎ ÀÌµ¿ ½Ã°£ 0 ÃÊ±âÈ­, ¿ì¼±¼øÀ§Å¥¿¡ »ğÀÔ
+	// ì¶œë°œì—­ ëª¨ë‘ ì´ë™ ì‹œê°„ 0 ì´ˆê¸°í™”, ìš°ì„ ìˆœìœ„íì— ì‚½ì…
 	for (int startStationNum : m_Mapping[startStationName])
 	{
 		minTime[startStationNum] = 0;
 		visitQueue.push({ 0, startStationNum });
 	}
 
-	// ÃÖ´Ü °æ·Î Å½»ö (´ÙÀÍ½ºÆ®¶ó)
+	// ìµœë‹¨ ê²½ë¡œ íƒìƒ‰ (ë‹¤ìµìŠ¤íŠ¸ë¼)
 	while (!visitQueue.empty())
 	{
 		int curTime = -visitQueue.top().first;
@@ -50,7 +55,7 @@ void CNavigation::Find_ShortestPath(const string& startStationName, const string
 		}
 	}
 
-	// ÃÖ´Ü °æ·Î µµÂø¿ª °»½Å
+	// ìµœë‹¨ ê²½ë¡œ ë„ì°©ì—­ ê°±ì‹ 
 	int leastTimeEndStationNum = m_Mapping[endStationName][0];
 	for (int endStationNum : m_Mapping[endStationName])
 	{
@@ -60,7 +65,7 @@ void CNavigation::Find_ShortestPath(const string& startStationName, const string
 		}
 	}
 
-	// ÀÌµ¿ °æ·Î ¿ªÃßÀû
+	// ì´ë™ ê²½ë¡œ ì—­ì¶”ì 
 	stack<int> temp;
 	temp.push(leastTimeEndStationNum);
 	for (int i = leastTimeEndStationNum; routeFrom[i] != -1; i = routeFrom[i])
@@ -68,14 +73,14 @@ void CNavigation::Find_ShortestPath(const string& startStationName, const string
 		temp.push(routeFrom[i]);
 	}
 
-	// ÀÌµ¿ °æ·Î Á¤¹æÇâ, ³ë¼± Á¤º¸·Î ÀúÀå
+	// ì´ë™ ê²½ë¡œ ì •ë°©í–¥, ë…¸ì„  ì •ë³´ë¡œ ì €ì¥
 	while (!temp.empty())
 	{
-		m_Path.push_back(stations[temp.top()]);
+		m_Path.push_back(m_Stations[temp.top()]);
 		temp.pop();
 	}
 
-	// ÃÑ ¼Ò¿ä ½Ã°£ ÀúÀå
+	// ì´ ì†Œìš” ì‹œê°„ ì €ì¥
 	m_TotalTime = minTime[leastTimeEndStationNum];
 }
 
@@ -84,19 +89,62 @@ vector<int> CNavigation::Find_Station(const string& stationName)
 	auto iter = m_Mapping.find(stationName);
 
 	if (iter == m_Mapping.end())
+	{
 		return vector<int>();
+	}
 
 	return iter->second;
 }
 
+bool CNavigation::Load_StationData(const string& filePath)
+{
+	ifstream file(filePath);
+
+	if (!file.is_open())
+	{
+		return false;
+	}
+
+	string str;
+	getline(file, str);
+
+	while (getline(file, str))
+	{
+		if (str.empty())
+		{
+			continue;
+		}
+
+		stringstream stream(str);
+		string line, name, time;
+		getline(stream, line, ',');
+		getline(stream, name, ',');
+		getline(stream, time, ',');
+
+		StationInfo info = {};
+		info.name = name;
+		info.line = stoi(line);
+		m_Stations.push_back(info);
+
+		if (!time.empty() && time != "0")
+		{
+			m_TransitTimes.push_back(stoi(time));
+		}
+	}
+
+	file.close();
+
+	return true;
+}
+
 void CNavigation::Make_Graph()
 {
-	// ¿ª ÀÌ¸§ -> ¼ıÀÚ·Î ¸ÅÇÎ
-	for (int i = 0; i < stations.size(); ++i)
+	// ì—­ ì´ë¦„ -> ìˆ«ìë¡œ ë§¤í•‘
+	for (int i = 0; i < m_Stations.size(); ++i)
 	{
-		const string& stationName = stations[i].name;
+		const string& stationName = m_Stations[i].name;
 
-		// È¯½Â¿ªÀÌ¸é È¯½Â¿ª³¢¸® È¯½Â½Ã°£À¸·Î ¿¬°á
+		// í™˜ìŠ¹ì—­ì´ë©´ í™˜ìŠ¹ì—­ë¼ë¦¬ í™˜ìŠ¹ì‹œê°„ìœ¼ë¡œ ì—°ê²°
 		if (m_Mapping.find(stationName) != m_Mapping.end())
 		{
 			for (int transferNum : m_Mapping[stationName])
@@ -109,14 +157,16 @@ void CNavigation::Make_Graph()
 		m_Mapping[stationName].push_back(i);
 	}
 
-	// ³ë¼± ¿¬°á
+	// ë…¸ì„  ì—°ê²°
 	int timeIndex = 0;
-	for (int i = 0; i < stations.size() - 1; ++i)
+	for (int i = 0; i < m_Stations.size() - 1; ++i)
 	{
-		if (stations[i].line != stations[i + 1].line)
+		if (m_Stations[i].line != m_Stations[i + 1].line)
+		{
 			continue;
+		}
 
-		int time = transitTimes[timeIndex++];
+		int time = m_TransitTimes[timeIndex++];
 
 		m_AdjList[i].push_back({ i + 1, time });
 		m_AdjList[i + 1].push_back({ i, time });
