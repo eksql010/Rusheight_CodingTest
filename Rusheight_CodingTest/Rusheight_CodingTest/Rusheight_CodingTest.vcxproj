@@ -134,9 +134,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="Navigation.h" />
     <ClInclude Include="StationApp.h" />
     <ClInclude Include="StationConsole.h" />
+    <ClInclude Include="Struct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

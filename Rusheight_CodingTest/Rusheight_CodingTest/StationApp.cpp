@@ -1,4 +1,4 @@
-#include "StationApp.h"
+ï»¿#include "StationApp.h"
 
 void CStationApp::Execute()
 {
@@ -13,7 +13,7 @@ void CStationApp::Input_Stations(string& startStation, string& endStation)
 {
 	while (true)
 	{
-		startStation = m_Console.Input_Station("Ãâ¹ß¿ª : ");
+		startStation = m_Console.Input_Station("ì¶œë°œì—­ : ");
 
 		if (m_Navigation.Find_Station(startStation).empty())
 		{
@@ -27,7 +27,7 @@ void CStationApp::Input_Stations(string& startStation, string& endStation)
 
 	while (true)
 	{
-		endStation = m_Console.Input_Station("µµÂø¿ª : ");
+		endStation = m_Console.Input_Station("ë„ì°©ì—­ : ");
 
 		if (m_Navigation.Find_Station(endStation).empty())
 		{

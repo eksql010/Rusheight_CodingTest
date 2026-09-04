@@ -51,6 +51,8 @@ void CStationConsole::Output_Result(const vector<StationInfo>& path, int totalTi
 	cout << endl;
 
 	cout << "총 소요 시간 : " << totalTime / 60 << "분 " << totalTime % 60 << "초" << endl;
+
+	system("pause");
 }
 
 WORD CStationConsole::Get_Color(int stationLine)

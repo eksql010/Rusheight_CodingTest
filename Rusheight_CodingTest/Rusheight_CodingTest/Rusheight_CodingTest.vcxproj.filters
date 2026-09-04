@@ -44,5 +44,11 @@
     <ClInclude Include="StationApp.h">
       <Filter>00_StationApp</Filter>
     </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>99_Define</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>99_Define</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
