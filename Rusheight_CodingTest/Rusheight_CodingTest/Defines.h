@@ -11,16 +11,11 @@
 
 using namespace std;
 
+#include "Struct.h"
+#include "Enum.h"
+
 #define INF 999999999
 #define TRANSFER_TIME 180
-
-struct StationInfo
-{
-	string	name;
-	int		line;
-};
-
-enum class STATIONERROR { NOTFOUND, SAME };
 
 const vector<StationInfo> stations =
 {
