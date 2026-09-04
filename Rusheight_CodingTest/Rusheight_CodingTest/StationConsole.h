@@ -13,5 +13,5 @@ public:
 	void	Output_Result(const vector<StationInfo>& path, int totalTime);
 
 private:
-	WORD	Get_Color(int stationLine);
+	string	Get_ColorCode(int r, int g, int b);
 };

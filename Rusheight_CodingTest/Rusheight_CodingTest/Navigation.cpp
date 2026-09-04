@@ -116,14 +116,20 @@ bool CNavigation::Load_StationData(const string& filePath)
 		}
 
 		stringstream stream(str);
-		string line, name, time;
+		string line, name, time, r, g, b;
 		getline(stream, line, ',');
 		getline(stream, name, ',');
 		getline(stream, time, ',');
+		getline(stream, r, ',');
+		getline(stream, g, ',');
+		getline(stream, b, ',');
 
 		StationInfo info = {};
 		info.name = name;
 		info.line = stoi(line);
+		info.r = stoi(r);
+		info.g = stoi(g);
+		info.b = stoi(b);
 		m_Stations.push_back(info);
 
 		if (!time.empty() && time != "0")
