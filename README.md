@@ -38,3 +38,7 @@ void CStationApp::Execute()
 ## 💭고민한 점
 - 유지보수를 고려해 테스트용으로 헤더에 두었던 역 데이터 배열을 `Station_Data.csv`로 분리했습니다.
 - 탐색 로직(CNavigation)과 입출력(CStationConsole)이 서로 의존하지 않도록 역할을 분리했습니다.
+
+## 🔗참고 자료
+- [C++ 다익스트라(Dijkstra) 알고리즘 개념 및 구현 (무방향 그래프)](https://devshovelinglife.tistory.com/557)
+- [[C++/C#] CSV 파일 읽기](https://kukuta.tistory.com/216)
